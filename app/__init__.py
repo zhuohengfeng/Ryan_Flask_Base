@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_restful import reqparse, abort, Api, Resource
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from app.admin import admin
@@ -8,6 +9,9 @@ import config
 app = Flask(__name__)
 app.config.from_object('config')
 app.register_blueprint(admin)
+
+# Restful api
+api = Api(app)
 
 # Load extensions
 db = SQLAlchemy()
@@ -19,6 +23,7 @@ bootstrap = Bootstrap(app)
 # mail.init_app(app)
 
 from . import views
+from restful import api
 
 
 
