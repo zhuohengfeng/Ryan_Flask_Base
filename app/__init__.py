@@ -1,3 +1,10 @@
+
+
+import os, sys
+ABSPATH = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
+sys.path.append(os.path.join(ABSPATH, 'restful'))
+
+
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 from flask_bootstrap import Bootstrap
@@ -23,7 +30,8 @@ bootstrap = Bootstrap(app)
 # mail.init_app(app)
 
 from . import views
-from restful import api
+print(sys.path)
+from restful.ap import *
 
 
 

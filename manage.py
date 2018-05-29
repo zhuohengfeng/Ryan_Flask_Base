@@ -12,11 +12,18 @@ python manage.py db upgrade
 这一步会产生数据表。
 '''
 
+import os, sys
+ABSPATH = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
+sys.path.append(os.path.join(ABSPATH, 'app','restful'))
+print(sys.path)
+
+
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from app import app, db
 # 注意这里也要导入各种模models中的各个模型
 from app.models import User, Question
+
 
 manager = Manager(app)
 
