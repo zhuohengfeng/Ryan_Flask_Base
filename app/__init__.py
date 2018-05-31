@@ -1,39 +1,28 @@
-
-
-import os, sys
-ABSPATH = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
-sys.path.append(os.path.join(ABSPATH, 'restful'))
-
-
 from flask import Flask
-from flask_restful import reqparse, abort, Api, Resource
 from flask_bootstrap import Bootstrap
+from flask_mail import Mail
+from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
-from app.admin import admin
-#from flask_mail import Mail
-import config
+from config import config
 
-app = Flask(__name__)
-app.config.from_object('config')
-app.register_blueprint(admin)
-
-# Restful api
-api = Api(app)
-
-# Load extensions
+bootstrap = Bootstrap()
+mail = Mail()
+moment = Moment()
 db = SQLAlchemy()
-db.init_app(app)
-
-bootstrap = Bootstrap(app)
-
-# mail = Mail()
-# mail.init_app(app)
-
-from . import views
-print(sys.path)
-from restful.ap import *
 
 
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
 
+    bootstrap.init_app(app)
+    mail.init_app(app)
+    moment.init_app(app)
+    db.init_app(app)
 
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    return app
 
