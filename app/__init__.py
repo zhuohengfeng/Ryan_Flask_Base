@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/1 9:21
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : 1.py
+# @Software: PyCharm
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail

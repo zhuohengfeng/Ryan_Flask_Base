@@ -7,7 +7,7 @@ python manager.py db update<br>
 
 <br>
 
-### 运行服务器
+### 运行服务器(Flask-script的默认命令)
 python manager.py runserver
 
 <br>

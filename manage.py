@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/1 9:21
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : 1.py
+# @Software: PyCharm
 import os
 from app import create_app, db
 from app.models import User, Role
@@ -12,7 +18,11 @@ migrate = Migrate(app, db)
 
 def make_shell_context():
     return dict(app=app, db=db, User=User, Role=Role)
+
+
+# 往shell中加入context
 manager.add_command("shell", Shell(make_context=make_shell_context))
+# 数据库迁移命令
 manager.add_command('db', MigrateCommand)
 
 
