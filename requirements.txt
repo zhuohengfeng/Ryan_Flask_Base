@@ -5,3 +5,4 @@ flask_migrate
 flask_bootstrap
 flask_mail
 flask_moment
+gunicorn
