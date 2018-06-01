@@ -3,7 +3,7 @@
 ### 初始化数据库
 python manager.py db init<br>
 python manager.py db migrate<br>
-python manager.py db update<br>
+python manager.py db upgrate<br>
 
 <br>
 
@@ -32,7 +32,7 @@ python manager.py shell
 [include] <br>
 files = /etc/supervisor/conf.d/*.conf <br>
 3.sudo vim /etc/supervisor/conf.d/app.conf <br>
-[program:app] <br>
+[program:fwg] <br>
 command=/home/ubuntu/www/fwg/venv/bin/gunicorn manager:app -c /home/ubuntu/www/fwg/gunicorn.conf <br>
 directory=/home/ubuntu/www/fwg <br>
 autostart=true <br>
@@ -42,6 +42,9 @@ stdout_logfile=/home/ubuntu/www/fwg/logs/gunicorn_supervisor.log <br>
 sudo supervisorctl
 app
 5.之后可以通过stop app停止app, status来查看。再次启动start app。退出exit
+6.supervisor 是服务端，而supervisorctl 是客户端。所以要先确保服务端启动：
+service supervisor start / stop.....
+7.要在工程目录下创建一个log目录给 supervisor存放log用
 
 ### 三.gunicorn
 1.安装在venv中,见requirements.txt <br>
